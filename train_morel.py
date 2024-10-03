@@ -353,7 +353,7 @@ if __name__ == "__main__":
     if args.arch == "wide_resnet_34_10":
         base_model = WideResNet(num_classes=args.num_class)
     elif args.arch == "resnet_18":
-        base_model = resnet18(num_classes=args.num_class)
+        base_model = ResNet18(num_classes=args.num_class)
 
     mod_encoder = base_model
     mod_encoder.fc = torch.nn.Identity()  # Remove classifier from Encoder
