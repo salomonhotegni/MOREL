@@ -82,7 +82,6 @@ def morel_loss(
     criterion_cs = MultiPosConLoss(device="cuda")
     criterion_cos = cosine_similarity_loss
     ## Cosine Similarity Loss
-    cos_loss = 0.0
     cos_loss = criterion_cos(batch_feats, batch_feats_adv)
     ## Contrastive Loss
     cs_loss = criterion_cs(attn_output_n, y)
@@ -114,13 +113,6 @@ def morel_loss(
         list_indiv_loss = [
             loss_adv.item(),
             loss_robust.item(),
-            cos_loss.item(),
-            cs_loss.item(),
-        ]
-    elif "pgd-at" in accu_obj:
-        list_indiv_loss = [
-            loss_natural.item(),
-            a_loss.item(),
             cos_loss.item(),
             cs_loss.item(),
         ]
