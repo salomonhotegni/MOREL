@@ -1,7 +1,7 @@
 <p align="center">
   <img src="/images/MOREL_rem.png" style="width: 10%; height: auto;">
 </p>
-<p align="center">
+<p align="left">
 <a href="https://deepwiki.com/salomonhotegni/MOREL"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
 
