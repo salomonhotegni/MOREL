@@ -11,7 +11,7 @@ Source code for the paper titled ["MOREL: Enhancing Adversarial Robustness throu
 
 
 <p align="center">
-  <img src="/images/MOREL_Overview.png" style="width: 40%; height: auto;">
+  <img src="/images/MOREL_Overview.png" style="width: 30%; height: auto;">
 </p>
 
 <!-- # -->
