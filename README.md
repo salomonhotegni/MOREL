@@ -1,8 +1,11 @@
-# MOREL
-
+<p align="center">
+  <img src="/images/MOREL_rem.png" style="width: 10%; height: auto;">
+</p>
 <p align="center">
 <a href="https://deepwiki.com/salomonhotegni/MOREL"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
+
+# MOREL
 
 Source code for the paper titled ["MOREL: Enhancing Adversarial Robustness through Multi-Objective Representation Learning"](https://arxiv.org/abs/2410.01697).
 
