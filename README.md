@@ -5,9 +5,9 @@
 <a href="https://deepwiki.com/salomonhotegni/MOREL"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
 
-# MOREL
+# Enhancing Adversarial Robustness through Multi-Objective Representation Learning (ICANN 2025)
 
-Source code for the paper titled ["MOREL: Enhancing Adversarial Robustness through Multi-Objective Representation Learning"](https://arxiv.org/abs/2410.01697).
+Source code for the paper titled ["Enhancing Adversarial Robustness through Multi-Objective Representation Learning"](https://arxiv.org/abs/2410.01697).
 
 <!-- # -->
 
