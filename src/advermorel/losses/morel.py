@@ -23,6 +23,7 @@ def morel_loss(
     gamma,  # augmentation coef
     accu_obj=None,
     alpha=1e-5,
+    feat_type="both",  # type of features to use for contrastive learning
     step_size=0.007,
     epsilon=0.031,
     perturb_steps=10,
@@ -154,7 +155,17 @@ def morel_loss(
     ## Cosine Similarity Loss
     cos_loss = criterion_cos(batch_feats, batch_feats_adv)
     ## Contrastive Loss
-    cs_loss = criterion_cs(attn_output_n, y)
+    if feat_type == "both":
+        # Use both natural and adversarial features for contrastive loss
+        cs_loss = criterion_cs(torch.cat((attn_output_n, attn_output_adv_n), dim=0), y.repeat(2))
+    elif feat_type == "nat":
+        # Use only natural features for contrastive loss
+        cs_loss = criterion_cs(attn_output_n, y)
+    elif feat_type == "adver":
+        # Use only adversarial features for contrastive loss
+        cs_loss = criterion_cs(attn_output_adv_n, y)
+    else:
+        raise ValueError(f"feat_type {feat_type} not recognized. Use 'both', 'nat', or 'adver'.")
     ## Morel Robust Loss
     f_loss = cos_loss + alpha * cs_loss
 
