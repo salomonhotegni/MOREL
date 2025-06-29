@@ -18,7 +18,7 @@
 
 ## 💻 Source Code
 
-All experiment and scripts for the paper ["Enhancing Adversarial Robustness through Multi-Objective Representation Learning"](https://arxiv.org/abs/2410.01697) live in `src/experiments`.
+All experiments and scripts for the paper ["Enhancing Adversarial Robustness through Multi-Objective Representation Learning"](https://arxiv.org/abs/2410.01697) live in `src/experiments`.
 
 ## 📦 Python Package: [`advermorel`](https://pypi.org/project/advermorel/)
 ### Installation
