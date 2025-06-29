@@ -1,0 +1,17 @@
+typer
+adversarial-robustness-toolbox>=1.19.2
+datasets>=3.6.0
+huggingface-hub>=0.33.1
+numpy>=2.1.2
+pandas>=2.3.0
+pillow>=11.0.0
+scikit-learn>=1.7.0
+scipy>=1.16.0
+setuptools>=78.1.1
+tqdm>=4.67.1
+
+[dev]
+coverage
+mypy
+pytest
+ruff
