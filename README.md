@@ -35,7 +35,7 @@ Or, to install the latest code from GitHub:
 conda create -n advermorel python=3.13
 conda activate advermorel
 git clone https://github.com/salomonhotegni/MOREL.git
-cd src/advermorel
+cd MOREL
 pip install -e .
 # To install CUDA‐enabled PyTorch, run (or visit: https://pytorch.org/get-started/locally/):
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
