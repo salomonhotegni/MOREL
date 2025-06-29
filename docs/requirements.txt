@@ -7,7 +7,4 @@ pillow==11.0.0
 scikit-learn==1.7.0
 scipy==1.16.0
 setuptools==78.1.1
-torch==2.7.1+cu118
-torchaudio==2.7.1+cu118
-torchvision==0.22.1+cu118
 tqdm==4.67.1
