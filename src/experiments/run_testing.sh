@@ -1,7 +1,6 @@
 #!/bin/bash
 # Use command: chmod u+x run_testing.sh
 # to make this script executable.
-export PYTHONPATH=$(pwd)
 mkdir -p logs/
 
 export METHOD=trades
