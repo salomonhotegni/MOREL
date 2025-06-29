@@ -30,6 +30,7 @@ class MOREL:
                  embed_dim=128,
                  num_att_heads=2,
                  dropout=0.0,
+                 feat_type="both",
                  epsilon=0.031,
                  train_step_size=0.007,
                  eval_step_size=0.003,
@@ -62,6 +63,7 @@ class MOREL:
             embed_dim: Embedding dimension for the model.
             num_att_heads: Number of attention heads in the model.
             dropout: Dropout rate for the model.
+            feat_type: Type of features to use for contrastive learning ("both", "nat", "adver").
             epsilon: Maximum perturbation for adversarial examples.
             train_step_size: Step size for adversarial perturbation during training.
             eval_step_size: Step size for adversarial perturbation during evaluation.
@@ -91,6 +93,9 @@ class MOREL:
         self.a = a
         self.gamma = gamma
         self.alpha = alpha
+        assert feat_type in ["both", "nat", "adver"], \
+            "feat_type must be one of ['both', 'nat', 'adver']"
+        self.feat_type = feat_type
         self.epsilon = epsilon
         self.train_step_size = train_step_size
         self.eval_step_size = eval_step_size
@@ -149,6 +154,7 @@ class MOREL:
                     gamma=self.gamma,
                     accu_obj=self.accu_obj,
                     alpha=self.alpha,
+                    feat_type=self.feat_type,
                     extra_configs=extra_configs,
                     custom_accu_obj=self.custom_accu_obj,
                 )
@@ -163,6 +169,7 @@ class MOREL:
                 gamma=self.gamma,
                 accu_obj=self.accu_obj,
                 alpha=self.alpha,
+                feat_type=self.feat_type,
                 step_size=self.train_step_size,
                 epsilon=self.epsilon,
                 perturb_steps=self.train_perturb_steps,
@@ -182,6 +189,7 @@ class MOREL:
                     gamma=self.gamma,
                     accu_obj=self.accu_obj,
                     alpha=self.alpha,
+                    feat_type=self.feat_type,
                     step_size=self.train_step_size,
                     epsilon=self.epsilon,
                     perturb_steps=self.train_perturb_steps,
