@@ -41,7 +41,7 @@ pip install -e .
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-### Basic usage
+## Basic usage
 Assume you want to train a ResNet-18 model with MOREL on the CIFAR-10 dataset. The advermorel package provides three objective functions for robust prediction—TRADES, MART, and LOAT—but you can also supply your own. Below is an end-to-end example training ResNet-18 for 10 epochs. By default, PGD-10 with `epsilon = 0.031` is considered for training.
 ```python
 import numpy as np
@@ -89,14 +89,13 @@ optimizer = optim.SGD(
 
 # Train the model:
 morel.train(optimizer=optimizer,
-            scheduler=scheduler,
             num_epochs=EPOCHS, 
             train_loader=train_loader, 
-            val_loader=test_loader, seed=0)
+            seed=0)
 ```
- Let’s evaluate the model’s robustness on the test dataset using a new adversarial attack. The `advermorel` package accepts attack methods from the `adversarial-robustness-toolbox`. In this example, we apply the CW-∞ attack:
+ Let’s evaluate the model’s robustness on the test dataset using a new adversarial attack. The `advermorel` package accepts attack methods from the `adversarial-robustness-toolbox`. In this example, we apply the PGD-20 attack:
 ```python
-from art.attacks.evasion import CarliniLInfMethod
+from art.attacks.evasion import ProjectedGradientDescent
 from art.estimators.classification import PyTorchClassifier
 
 # Prepare the test dataloader:
@@ -112,7 +111,7 @@ test_loader = torch.utils.data.DataLoader(
         testset, batch_size=BATCH_SIZE, shuffle=False, num_workers=2
     )
 
-# Create the CW-inf attack
+# Create the PGD-20 attack
 classifier_att = PyTorchClassifier(
                     model=morel.model,
                     clip_values=(0.0, 1.0),
@@ -121,14 +120,16 @@ classifier_att = PyTorchClassifier(
                     input_shape=(3, 32, 32),
                     nb_classes=morel.num_class,
                 )
-attack = CarliniLInfMethod(
-            classifier=classifier_att,
-            targeted=False,
-            initial_const=15,
-            learning_rate=1e-2,
-            max_iter=10,
-            batch_size=BATCH_SIZE,
-        )
+attack = ProjectedGradientDescent(
+                    estimator=classifier_att,
+                    norm=np.inf,
+                    eps=morel.epsilon,
+                    eps_step=morel.eval_step_size,
+                    max_iter=20,
+                    targeted=False,
+                    num_random_init=0,
+                    batch_size=BATCH_SIZE,
+                )
 
 # Test the robustness of the trained model against this attack:
 clean_accuracy, robust_accuracy = morel.test(test_loader, attack=attack)
