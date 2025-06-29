@@ -574,7 +574,7 @@ class MOREL:
         else:
             torch.save(checkpoint, TRAIN_STATE_FILE)
 
-    def set_seed(seed: int = 0):
+    def set_seed(self, seed: int = 0):
         """
         Set the random seed for reproducibility.
         """
